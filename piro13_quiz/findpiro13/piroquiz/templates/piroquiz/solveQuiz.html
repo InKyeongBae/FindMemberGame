@@ -1,0 +1,53 @@
+<style>
+    form{color : white}
+    p{color: white}
+    li{color: pink; list-style: none}
+    label{color: white}
+    #submit_button{
+        background-color: #282828; color: pink; border-radius: 5px; border-color: pink; padding: 10px; margin-left: 650px;
+    }
+</style>
+{% extends "layout.html" %}
+{% block content %}
+    <br/>
+
+<h2 style="color: white">맞혀보거라 으하하!</h2>
+    <br/>
+    <h4>| 출제자: {{ user }}</h4>
+    <br/>
+    <hr style="width: 1300px;border-color: pink; margin-left: 0px;">
+    <br/>
+
+    <form action="{% url 'piroquiz:index' %}" method="POST">
+    {% csrf_token %}
+        {{ answer.title }}<br /><br />
+
+        1. 내가 다니는 학교는?<br />
+        <input type="radio" name="school" value="0">
+        <label for="chungang">중앙대</label><br>
+        <input type="radio" name="school" value="1">
+        <label for="seoul">서울대</label><br>
+        <input type="radio" name="school" value="2">
+        <label for="soongsil">숭실대</label><br>
+        <input type="radio" name="school" value="3">
+        <label for="korea">고려대</label><br>
+        <br />
+
+        <br><br><hr style="width: 1300px;border-color: pink; margin-left: 0px;"><br><br>
+
+        2. 내가 좋아하는 음식은?<br />
+        <input type="radio" name="food" value="0">
+        <label for="ramen">라면</label><br>
+        <input type="radio" name="food" value="1">
+        <label for="rice">밥</label><br>
+        <input type="radio" name="food" value="2">
+        <label for="burger">버거</label><br>
+        <input type="radio" name="food" value="3">
+        <label for="bread">빵</label><br>
+
+        <br><br><hr style="width: 1300px;border-color: pink; margin-left: 0px;"><br><br>
+        <br />
+
+    <input type="submit" value="제출" />
+
+{% endblock %}

@@ -1,0 +1,47 @@
+<style>
+    form{color : white}
+    p{color: white}
+      #submit_button{
+        background-color: #282828; color: pink; border-radius: 5px; border-color: pink; padding: 10px; margin-left: 650px;
+    }
+</style>
+
+{% extends "layout.html" %}
+{% block content %}
+    <br/>
+<h2 style="color: white">퀴즈 생성하기</h2>
+    <br/>
+    <h4>| 현재 사용자: {{ user }}</h4>
+    <br/>
+    <hr style="width: 1300px;border-color: pink; margin-left: 0px;">
+    <br/>
+
+    <form action="{% url 'piroquiz:CreateQuiz' %}" method="POST">
+    {% csrf_token %}
+        Title : <input type="text" name="title"><br><br>
+
+        1. 내가 다니는 학교는?<br />
+        <input type="radio" name="school" value="0">
+        <label for="chungang">중앙대</label><br>
+        <input type="radio" name="school" value="1">
+        <label for="seoul">서울대</label><br>
+        <input type="radio" name="school" value="2">
+        <label for="soongsil">숭실대</label><br>
+        <input type="radio" name="school" value="3">
+        <label for="korea">고려대</label><br>
+        <br />
+
+        2. 내가 좋아하는 음식은?<br />
+        <input type="radio" name="food" value="0">
+        <label for="chungang">라면</label><br>
+        <input type="radio" name="food" value="1">
+        <label for="chungang">밥</label><br>
+        <input type="radio" name="food" value="2">
+        <label for="chungang">버거</label><br>
+        <input type="radio" name="food" value="3">
+        <label for="chungang">빵</label><br>
+        <br />
+
+    <input type="submit" value="제출" />
+</form>
+{% endblock %}

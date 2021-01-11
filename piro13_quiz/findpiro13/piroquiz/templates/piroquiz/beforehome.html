@@ -1,0 +1,57 @@
+<style>
+    .gogo {
+        background-color: #282828;
+        color: pink;
+        border-radius: 5px;
+        border-color: pink;
+        padding-left: 60px;
+        padding-right: 60px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        flex-direction: row;
+        justify-content: center;
+        font-size: 30px;
+    }
+
+    .who {
+        color: white;
+        font-size: 30px;
+        text-align: center;
+    }
+
+    .buttons {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+</style>
+
+{% extends "layout.html" %}
+
+{% block content %}
+    <br><br><br><br><br><br>
+    {% if user.is_authenticated %}
+        <p class="who" style="font-size: 50px; color: pink">♡</p><br><br>
+        <p class="who">나를 가장 잘 아는 <br/> 피로그래머는 누구일까요?!</p><br>
+        <div class="buttons">
+            <a href="{% url 'piroquiz:CreateQuiz' %}">
+                <button class="gogo">퀴즈 내러가기</button>
+            </a><br>
+            <a href="{% url 'piroquiz:index' %}">
+                <button class="gogo">퀴즈 맞히러가기</button>
+            </a>
+        </div>
+    {% else %}
+        <p class="who" style="font-size: 50px; color: pink">♡</p><br><br>
+        <p class="who">나를 가장 잘 아는 <br/> 피로그래머는 누구일까요?!</p><br>
+        <div class="buttons">
+            <a href="{% url 'login' %}?next={{ request.path }}" target="_self">
+                <button class="gogo">퀴즈 맞히러가기</button>
+            </a>
+        </div>
+        <br><br><br><br>
+    {% endif %}
+    <br><br><br><br><br>
+{% endblock %}

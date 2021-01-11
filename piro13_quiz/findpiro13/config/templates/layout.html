@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            margin: 0 0 0 0;
+            padding: 0 0 0 0;
+            border: 0;
+            float: left;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        body {
+            background-color: #282828;
+        }
+
+        h4, h5 {
+            color: #ffffff;
+        }
+
+        .nav {
+            display: block;
+            background-color: black;
+            width: 100%;
+            position: fixed;
+
+        }
+
+        .nav .nav__navbar {
+            display: flex;
+            justify-content: space-evenly;
+            height: 40px;
+            padding: 15px 0;
+            align-items: center;
+        }
+
+
+        .nav__column .nav__list {
+            text-align: right;
+        }
+
+        .mainIcon > a {
+            color: pink;
+            margin-left: -460px;
+            font-size: 20px;
+        }
+
+        .nav__list {
+            margin-right: -400px;
+
+        }
+
+        .nav__list .nav__item > a {
+            color: white;
+        }
+
+        .nav__list .nav__item {
+            text-align: right;
+            margin-left: 50px;
+            font-weight: bolder;
+        }
+
+        .main {
+            display: block;
+            padding-top: 70px;
+            margin-left: 100px;
+        }
+
+        .footer {
+            height: 80px;
+            width: 100%;
+            position:sticky;
+            bottom:0;
+            display: block;
+            background-color: black;
+        }
+
+        .footer_we{
+            margin-left: 100px;
+            text-align: center;
+            font-weight: lighter;
+            color: white;
+            font-size: 13px;
+        }
+
+
+    </style>
+</head>
+<body>
+<div class="nav">
+    <div class="nav__navbar">
+        <p class="mainIcon"><a href="{% url 'root' %}" target="_self">PIROGRAM QUIZ</a></p>
+        {% if user.is_authenticated %}
+            <ul class="nav__list">
+                <li class="nav__item"><a href="{% url 'piroquiz:index' %}" target="_self">내 퀴즈 보기</a></li>
+                <li class="nav__item"><a href="{% url 'logout' %}?next={{ request.path }}" onclick="return confirm('로그아웃 하시겠습니까?');">로그아웃</a></li>
+            </ul>
+        {% else %}
+            <ul class="nav__list">
+
+                <li class="nav__item"><a href="{% url 'login' %}?next={{request.path}}" target="_self">로그인</a></li>
+            </ul>
+        {% endif %}
+    </div>
+</div>
+
+<div class="main">
+    {% block content %}
+    {% endblock %}
+</div>
+
+<div class="footer">
+
+    <div class="footer_we">
+        <br>
+        <p style="font-weight: bolder; font-size: 15px;">피로그래밍 13기 | 마지막 팀과제</p>
+        <p>5조_ 김하경, 유병욱, 배인경, 신민지 팀과제 입니다. 너무 어렵네요... 자비 좀...</p>
+    </div>
+</div>
+
+
+</body>
+</html>
